@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-labelledby="p1title">
+  <title id="p1title">Exempel på hemsida för ett hantverksföretag</title>
+  <rect width="480" height="320" fill="#FAF8F5"/>
+  <rect width="480" height="34" fill="#17181C"/>
+  <circle cx="18" cy="17" r="5" fill="#FAF8F5" opacity="0.35"/>
+  <circle cx="34" cy="17" r="5" fill="#FAF8F5" opacity="0.35"/>
+  <circle cx="50" cy="17" r="5" fill="#FAF8F5" opacity="0.35"/>
+  <rect x="36" y="58" width="408" height="72" rx="6" fill="#2F5D8A"/>
+  <rect x="56" y="150" width="180" height="12" rx="4" fill="#17181C" opacity="0.55"/>
+  <rect x="56" y="172" width="260" height="10" rx="4" fill="#17181C" opacity="0.25"/>
+  <rect x="36" y="204" width="128" height="80" rx="6" fill="#17181C" opacity="0.08"/>
+  <rect x="176" y="204" width="128" height="80" rx="6" fill="#17181C" opacity="0.08"/>
+  <rect x="316" y="204" width="128" height="80" rx="6" fill="#17181C" opacity="0.08"/>
+  <rect x="56" y="228" width="88" height="8" rx="3" fill="#17181C" opacity="0.3"/>
+  <rect x="196" y="228" width="88" height="8" rx="3" fill="#17181C" opacity="0.3"/>
+  <rect x="336" y="228" width="88" height="8" rx="3" fill="#17181C" opacity="0.3"/>
+</svg>

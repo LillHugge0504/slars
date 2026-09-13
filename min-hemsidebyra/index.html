@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SLARS – Hemsidor som gör skillnad</title>
+  <meta name="description" content="SLARS skapar moderna, snabba och professionella hemsidor för lokala företag i Rättvik och Dalarna. Personlig service, tydliga priser – få en kostnadsfri offert." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="SLARS – Hemsidor som gör skillnad" />
+  <meta property="og:description" content="Vi skapar moderna, snabba och professionella hemsidor för lokala företag i Rättvik och Dalarna." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="sv_SE" />
+
+  <!--
+    Google Fonts: Inter (brödtext, knappar, formulär) + Space Grotesk
+    (rubriker, logga, priser). Båda hämtas i samma stylesheet-anrop för
+    att hålla antalet nätverksanrop nere. Systemtypsnitt är fallback.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Structured data för lokal sökbarhet -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "SLARS",
+    "description": "SLARS skapar moderna, snabba och professionella hemsidor för lokala företag i Rättvik och Dalarna.",
+    "areaServed": {
+      "@type": "City",
+      "name": "Rättvik"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Rättvik",
+      "addressRegion": "Dalarna",
+      "addressCountry": "SE"
+    },
+    "email": "slars.se@gmail.com",
+    "makesOffer": {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Webbdesign och hemsideutveckling för lokala företag"
+      }
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- Skip-länk för tangentbords- och skärmläsaranvändare -->
+  <a class="skip-link" href="#main-content">Hoppa till innehåll</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#main-content" class="logo">SLARS</a>
+
+      <nav class="nav" id="primaryNav" aria-label="Huvudmeny">
+        <a href="#tjanster">Tjänster</a>
+        <a href="#projekt">Projekt</a>
+        <a href="#priser">Priser</a>
+        <a href="#om-oss">Om oss</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#kontakt" class="btn btn-primary btn-small header-cta">Få offert</a>
+
+        <button
+          type="button"
+          class="nav-toggle"
+          id="navToggle"
+          aria-expanded="false"
+          aria-controls="primaryNav"
+          aria-label="Öppna meny"
+        >
+          <span class="nav-toggle-bar" aria-hidden="true"></span>
+          <span class="nav-toggle-bar" aria-hidden="true"></span>
+          <span class="nav-toggle-bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- HERO: två kolumner på desktop (text + bildmockup), staplas på mobil -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text-col">
+          <p class="badge">
+            <span class="badge-dot" aria-hidden="true"></span>
+            Tillgänglig för nya uppdrag just nu
+          </p>
+
+          <h1>SLARS</h1>
+          <p class="tagline">Hemsidor som gör skillnad</p>
+          <p class="hero-text">
+            Vi skapar moderna, snabba och professionella hemsidor för lokala företag,
+            till exempel hantverkare, restauranger, frisörer och andra verksamheter
+            som vill synas och bli kontaktade.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#kontakt" class="btn btn-primary">Få en kostnadsfri offert</a>
+            <a href="#projekt" class="btn btn-secondary">Se våra projekt</a>
+          </div>
+        </div>
+
+        <div class="hero-image-col">
+          <!-- Återanvänder projekt-mockupen som ren illustration, därför tom alt-text -->
+          <div class="hero-mockup">
+            <img src="assets/projekt-2.svg" alt="" loading="lazy" width="480" height="320" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TJÄNSTER -->
+    <section id="tjanster" class="section reveal">
+      <div class="container">
+        <h2>Vad vi gör</h2>
+        <p class="section-intro">
+          Allt vi bygger har ett mål: att fler kunder ska hitta er, lita på er och
+          höra av sig.
+        </p>
+
+        <div class="cards">
+          <div class="card">
+            <h3>Modern design</h3>
+            <p>
+              En ren, professionell hemsida ger ett förtroende redan innan kunden
+              har läst en enda rad. Det gör att fler stannar kvar.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Mobilanpassat &amp; snabbt</h3>
+            <p>
+              De flesta besökare kommer från mobilen. Er sida laddar snabbt och
+              fungerar felfritt oavsett skärm, så ni inte tappar kunder på vägen.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Enkelt att bli hittad och kontaktad</h3>
+            <p>
+              Tydliga kontaktvägar och grunderna för sökmotorer på plats, så att
+              fler faktiskt hör av sig och inte bara tittar förbi.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJEKT / REFERENSER -->
+    <section id="projekt" class="section section-alt reveal">
+      <div class="container">
+        <h2>Projekt</h2>
+        <p class="section-intro">
+          Ett urval exempelprojekt som visar vad en hemsida från SLARS kan se ut som.
+        </p>
+
+        <div class="projects">
+          <article class="project-card">
+            <span class="project-tag">Exempelprojekt</span>
+            <img
+              src="assets/projekt-1.svg"
+              alt="Skiss av en hemsida för ett hantverksföretag med startsida och tjänstekort"
+              loading="lazy"
+              width="480"
+              height="320"
+            />
+            <h3>Hantverksfirman</h3>
+            <p>En tydlig sida som visar tjänster, referensjobb och gör det enkelt att begära en offert.</p>
+          </article>
+
+          <article class="project-card">
+            <span class="project-tag">Exempelprojekt</span>
+            <img
+              src="assets/projekt-2.svg"
+              alt="Skiss av en hemsida för en pizzeria med meny och bordsbokning"
+              loading="lazy"
+              width="480"
+              height="320"
+            />
+            <h3>Pizzeria &amp; Restaurang</h3>
+            <p>Meny, öppettider och kontaktuppgifter samlat på ett ställe, lätt för hungriga kunder att hitta rätt.</p>
+          </article>
+
+          <article class="project-card">
+            <span class="project-tag">Exempelprojekt</span>
+            <img
+              src="assets/projekt-3.svg"
+              alt="Skiss av en hemsida för en frisörsalong med bildgalleri och bokningsknapp"
+              loading="lazy"
+              width="480"
+              height="320"
+            />
+            <h3>Frisörsalongen</h3>
+            <p>Ett galleri som visar upp jobbet, plus en tydlig väg till att boka tid direkt.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!--
+      OM OSS: sammanslagning av tidigare "Varför SLARS" (#varfor-slars) och
+      "Om oss". Samma id ("om-oss") behålls så gamla länkar fortsätter
+      fungera. Budskapen (personlig kontakt, lokal förankring, öppet pris)
+      sades tidigare med olika ord i två sektioner – nu i en, kortare.
+    -->
+    <section id="om-oss" class="section reveal">
+      <div class="container about-inner">
+        <h2>Om oss</h2>
+        <p>
+          SLARS drivs av mig, Hugo, från Rättvik.
+        </p>
+        <p>
+          Jag bygger moderna hemsidor åt lokala företag i Dalarna, snabbt,
+          professionellt och till ett pris ni känner till redan från start.
+        </p>
+        <p>
+          Ni har samma kontaktperson genom hela processen, från första idé
+          till lanserad sida.
+        </p>
+      </div>
+    </section>
+
+    <!-- PRISER -->
+    <section id="priser" class="section section-alt reveal">
+      <div class="container">
+        <h2>Priser</h2>
+        <p class="section-intro">
+          Enkla paket utan dolda kostnader. Osäker på vad ni behöver? Vi landar det
+          tillsammans i offerten.
+        </p>
+
+        <div class="pricing">
+          <div class="price-card">
+            <h3>Bas</h3>
+            <p class="price">från 4 999 kr</p>
+            <p>En snygg en-sidas hemsida med det viktigaste: vad ni gör, var ni finns och hur man når er.</p>
+            <ul>
+              <li>En sida, mobilanpassad</li>
+              <li>Kontaktuppgifter &amp; karta</li>
+              <li>Passar t.ex. enskild hantverkare</li>
+            </ul>
+          </div>
+
+          <div class="price-card price-card-featured">
+            <p class="price-badge">Mest valda</p>
+            <h3>Standard</h3>
+            <p class="price">från 6 999 kr</p>
+            <p>Flersidig hemsida med kontaktformulär, bra för de flesta lokala företag.</p>
+            <ul>
+              <li>Flera sidor (t.ex. Hem, Tjänster, Om, Kontakt)</li>
+              <li>Kontaktformulär</li>
+              <li>Grundläggande SEO på plats</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="pricing-note">
+          Alla paket inkluderar löpande drift för 199 kr/mån (domän, hosting och support).
+        </p>
+
+        <p class="pricing-note">
+          Behöver ni något mer avancerat? <a href="#kontakt">Hör av er</a> så tar vi fram en offert.
+        </p>
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section id="kontakt" class="section section-alt reveal">
+      <div class="container contact-inner">
+        <h2>Kontakt</h2>
+        <p class="section-intro">
+          Berätta kort om er verksamhet, så återkommer jag med ett kostnadsfritt
+          förslag utan förpliktelser.
+        </p>
+
+        <form id="contactForm" class="contact-form" novalidate>
+          <div class="form-row">
+            <label for="name">Namn</label>
+            <input type="text" id="name" name="name" autocomplete="name" required />
+            <span class="form-error" id="name-error" aria-live="polite"></span>
+          </div>
+
+          <div class="form-row">
+            <label for="company">Företag</label>
+            <input type="text" id="company" name="company" autocomplete="organization" required />
+            <span class="form-error" id="company-error" aria-live="polite"></span>
+          </div>
+
+          <div class="form-row">
+            <label for="email">E-post</label>
+            <input type="email" id="email" name="email" autocomplete="email" required />
+            <span class="form-error" id="email-error" aria-live="polite"></span>
+          </div>
+
+          <div class="form-row">
+            <label for="phone">Telefon <span class="optional">(valfritt)</span></label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" />
+          </div>
+
+          <div class="form-row">
+            <label for="message">Meddelande</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            <span class="form-error" id="message-error" aria-live="polite"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Skicka och få offert</button>
+
+          <p>
+            Genom att skicka formuläret godkänner du vår
+            <a href="integritetspolicy.html">integritetspolicy</a>.
+          </p>
+
+          <!--
+            Formuläret öppnar just nu användarens e-postklient via mailto: som
+            fallback (kräver ingen server). Vill du koppla det till en tjänst
+            som Formspree senare: sätt form action="https://formspree.io/f/DITT-ID"
+            method="POST", ta bort event.preventDefault() för mailto-delen i
+            script.js och behåll valideringen som den är.
+          -->
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <p class="logo footer-logo">SLARS</p>
+        <p>Hemsidor som gör skillnad</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Sidfotsmeny">
+        <a href="#tjanster">Tjänster</a>
+        <a href="#projekt">Projekt</a>
+        <a href="#priser">Priser</a>
+        <a href="#om-oss">Om oss</a>
+        <a href="#kontakt">Kontakt</a>
+        <a href="integritetspolicy.html">Integritetspolicy</a>
+      </nav>
+
+      <p class="footer-contact">
+        <a href="mailto:slars.se@gmail.com">slars.se@gmail.com</a>
+      </p>
+    </div>
+
+    <p class="footer-copy">
+      &copy; <span id="year"></span> SLARS. Alla rättigheter förbehållna.
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

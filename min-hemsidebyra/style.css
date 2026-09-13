@@ -1,0 +1,891 @@
+/* ==========================================================================
+   SLARS – varumärkesvariabler
+   ========================================================================== */
+:root {
+  /* Bas & kontrast (inga rena svart/vit — mjukare, mer premium) */
+  --color-dark: #17181c;       /* text, mörka ytor */
+  --color-light: #faf8f5;      /* bakgrund, ljusa ytor */
+
+  /* Primär accent: EN signaturfärg (tidigare blå + grön var separata,
+     nu en djup petrol/teal som knappar, länkhover, priser m.m. delar). */
+  --color-primary: #1f5f5b;
+  --color-primary-hover: #164543;
+
+  /* Sekundär mikroaccent: ENBART till "tillgänglig nu"-prickens punkt
+     (grönt är en vedertagen konvention för aktiv/ledig-status) —
+     används aldrig som varumärkesfärg eller stor yta. */
+  --color-accent-green: #4c7a5d;
+
+  /* Härledda toner */
+  --color-text: var(--color-dark);
+  --color-text-muted: #4b4f58;
+  --color-border: #e4e0d8;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f1ede6;
+
+  /* Brödtext: Inter. Rubriker/logga/priser: Space Grotesk (vikter 500/700,
+     se länkarna i <head>) med Inter som fallback om den inte hunnit laddas. */
+  --font-base: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: "Space Grotesk", var(--font-base);
+
+  --max-width: 1120px;
+  --radius: 10px;
+  --radius-sm: 8px;
+
+  --shadow-sm: 0 2px 10px rgba(23, 24, 28, 0.06);
+  --shadow-md: 0 12px 28px rgba(23, 24, 28, 0.08);
+  --shadow-lg: 0 24px 56px rgba(23, 24, 28, 0.18);
+
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+}
+
+/* ==========================================================================
+   Reset & grunder
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-base);
+  font-display: swap;
+  color: var(--color-text);
+  background: var(--color-light);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Rubrikfont (Space Grotesk) på rubriker + varumärkes-/prisdetaljer.
+   font-weight 700 matchar den tyngsta laddade vikten (se --font-heading). */
+h1,
+h2,
+h3,
+.logo,
+.tagline,
+.price,
+.price-badge,
+.badge {
+  font-family: var(--font-heading);
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Fokusstilar: synliga för tangentbordsnavigering, inte bara hover */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip-länk: dold tills den får fokus */
+.skip-link {
+  position: absolute;
+  top: -60px;
+  left: 16px;
+  background: var(--color-dark);
+  color: var(--color-light);
+  padding: 12px 18px;
+  border-radius: var(--radius-sm);
+  z-index: 100;
+  text-decoration: none;
+  font-weight: 600;
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+.site-header {
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  background: rgba(250, 248, 245, 0.92);
+  backdrop-filter: blur(8px);
+  z-index: 50;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  gap: 16px;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: var(--color-dark);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.nav a:hover {
+  color: var(--color-primary);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-cta {
+  display: none;
+}
+
+/* Hamburgarmeny-knapp (mobil) */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.nav-toggle-bar {
+  display: block;
+  width: 18px;
+  height: 2px;
+  margin: 0 auto;
+  background: var(--color-dark);
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ==========================================================================
+   Knappar
+   ========================================================================== */
+.btn {
+  display: inline-block;
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform var(--transition-fast), background var(--transition-fast),
+    color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-dark);
+  border-color: var(--color-dark);
+}
+
+.btn-secondary:hover {
+  background: var(--color-dark);
+  color: var(--color-light);
+  transform: translateY(-2px);
+}
+
+.btn-small {
+  padding: 9px 18px;
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+.hero {
+  position: relative;
+  overflow: hidden; /* håller glow-effekten innanför sektionen */
+  padding: 110px 0 90px;
+}
+
+/* Subtil djupkänsla: en mjuk, lågopacitets teal-glow bakom hero-innehållet.
+   Medvetet diskret — ska knappt märkas, bara ta bort den platta känslan. */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -18%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 780px;
+  height: 780px;
+  max-width: 140%;
+  background: radial-gradient(circle, rgba(31, 95, 91, 0.14) 0%, rgba(31, 95, 91, 0) 70%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative; /* hamnar ovanför ::before-glowen */
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 40px;
+  text-align: center;
+  max-width: var(--max-width);
+}
+
+.hero-text-col {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.hero-image-col {
+  display: flex;
+  justify-content: center;
+}
+
+/* Webbläsarram runt bildmockupen: rundade hörn, mjuk skugga och en
+   liten "trafikljus"-rad överst (byggd med box-shadow, inga extra element). */
+.hero-mockup {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 34px 14px 14px;
+  box-shadow: var(--shadow-lg);
+}
+
+.hero-mockup::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 16px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-border);
+  box-shadow: 16px 0 0 var(--color-border), 32px 0 0 var(--color-border);
+}
+
+.hero-mockup img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+}
+
+/* Desktop: text till vänster, bildmockup till höger */
+@media (min-width: 900px) {
+  .hero-inner {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    text-align: left;
+  }
+
+  .hero-text-col {
+    margin: 0;
+  }
+
+  .hero-actions {
+    justify-content: flex-start;
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 24px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent-green);
+  flex-shrink: 0;
+}
+
+.hero h1 {
+  font-size: 3.25rem;
+  letter-spacing: 0.02em;
+  margin: 0 0 12px;
+}
+
+.tagline {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0 0 18px;
+}
+
+.hero-text {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  margin: 0 auto 36px;
+  max-width: 540px;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   Sektioner (generellt)
+   ========================================================================== */
+.section {
+  padding: 88px 0;
+}
+
+.section-alt {
+  background: var(--color-surface-alt);
+}
+
+.section h2 {
+  font-size: 2.1rem;
+  margin: 0 0 16px;
+  text-align: center;
+}
+
+.section-intro {
+  max-width: 640px;
+  margin: 0 auto 44px;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+}
+
+/* Scroll-in-animation: fade + slide-up. Startläge (osynlig) sätts bara om
+   JS finns och rörelse inte är avstängd — se script.js och media query nedan. */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   Tjänster – kort
+   ========================================================================== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 30px 26px;
+  text-align: left;
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.card h3 {
+  font-size: 1.1rem;
+  margin: 0 0 10px;
+}
+
+.card p {
+  color: var(--color-text-muted);
+  font-size: 0.97rem;
+}
+
+/* ==========================================================================
+   Projekt / referenser
+   ========================================================================== */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.project-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  text-align: left;
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.project-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.project-card img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.project-tag {
+  display: inline-block;
+  margin: 16px 0 0 20px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  background: var(--color-surface-alt);
+  color: var(--color-text-muted);
+  border-radius: 999px;
+}
+
+.project-card h3 {
+  font-size: 1.05rem;
+  margin: 16px 20px 8px;
+}
+
+.project-card p {
+  margin: 0 20px 20px;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   Om oss (sammanslagen löptext-sektion, tidigare två separata sektioner)
+   ========================================================================== */
+.about-inner {
+  max-width: 700px;
+  text-align: center;
+}
+
+.about-inner h2 {
+  margin-bottom: 24px;
+}
+
+.about-inner p {
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.about-inner p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Priser
+   ========================================================================== */
+.pricing {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 760px;
+  margin: 0 auto;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.price-card {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 32px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.price-card-featured {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.price-badge {
+  position: absolute;
+  top: -12px;
+  left: 26px;
+  background: var(--color-primary);
+  color: var(--color-light);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+.price-card h3 {
+  font-size: 1.2rem;
+}
+
+.price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.price-card > p:not(.price):not(.price-badge) {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.price-card ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pricing-note {
+  max-width: 640px;
+  margin: 20px auto 0;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   Kontakt / formulär
+   ========================================================================== */
+.contact-inner {
+  max-width: 560px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-row label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.optional {
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.form-row input,
+.form-row textarea {
+  font: inherit;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  resize: vertical;
+}
+
+.form-row input:focus,
+.form-row textarea:focus {
+  border-color: var(--color-primary);
+}
+
+.form-row input[aria-invalid="true"],
+.form-row textarea[aria-invalid="true"] {
+  border-color: #b3423a;
+}
+
+.form-error {
+  min-height: 1.2em;
+  font-size: 0.85rem;
+  color: #b3423a;
+}
+
+.form-status {
+  min-height: 1.4em;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.form-status[data-state="success"] {
+  /* Teal (samma som varumärkesaccenten) snarare än grönt — grönt är
+     reserverat för "tillgänglig nu"-pricken, se --color-accent-green. */
+  color: var(--color-primary);
+}
+
+.form-status[data-state="error"] {
+  color: #b3423a;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  background: var(--color-dark);
+  color: var(--color-light);
+  padding: 48px 0 24px;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.footer-brand .logo {
+  color: var(--color-light);
+  margin-bottom: 4px;
+}
+
+.footer-brand p {
+  color: rgba(250, 248, 245, 0.7);
+  font-size: 0.9rem;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-nav a {
+  color: rgba(250, 248, 245, 0.85);
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+
+.footer-nav a:hover {
+  color: var(--color-light);
+}
+
+.footer-contact a {
+  color: var(--color-light);
+  text-decoration: underline;
+  font-size: 0.92rem;
+}
+
+.footer-copy {
+  text-align: center;
+  font-size: 0.82rem;
+  color: rgba(250, 248, 245, 0.6);
+  padding-top: 20px;
+  border-top: 1px solid rgba(250, 248, 245, 0.12);
+}
+
+/* ==========================================================================
+   Rörelse & tillgänglighet
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   Responsivitet
+   Brytpunkter: mobil (<640px), surfplatta (641–1024px), desktop (>1024px)
+   ========================================================================== */
+
+/* Tablet och mindre: nav blir hamburgarmeny, kort/rutnät går till 2 kolumner */
+@media (max-width: 1024px) {
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    background: var(--color-light);
+    border-bottom: 1px solid var(--color-border);
+    padding: 8px 24px 16px;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height var(--transition-base), opacity var(--transition-base);
+  }
+
+  .nav.is-open {
+    max-height: 320px;
+    opacity: 1;
+  }
+
+  .nav a {
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav a:last-child {
+    border-bottom: none;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pricing {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+}
+
+/* Desktop: visa header-CTA */
+@media (min-width: 1025px) {
+  .header-cta {
+    display: inline-block;
+  }
+}
+
+/* Mobil */
+@media (max-width: 640px) {
+  .hero {
+    padding: 72px 0 56px;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .tagline {
+    font-size: 1.15rem;
+  }
+
+  .hero-text {
+    font-size: 1rem;
+  }
+
+  .section {
+    padding: 60px 0;
+  }
+
+  .section h2 {
+    font-size: 1.7rem;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .projects {
+    grid-template-columns: 1fr;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+  }
+}
