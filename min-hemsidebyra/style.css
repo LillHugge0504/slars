@@ -346,22 +346,6 @@ textarea:focus-visible {
   border-radius: var(--radius-sm);
 }
 
-/* Desktop: text till vänster, bildmockup till höger */
-@media (min-width: 900px) {
-  .hero-inner {
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: 56px;
-    text-align: left;
-  }
-
-  .hero-text-col {
-    margin: 0;
-  }
-
-  .hero-actions {
-    justify-content: flex-start;
-  }
-}
 
 .badge {
   display: inline-flex;
